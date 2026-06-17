@@ -1,0 +1,42 @@
+public class MathMethods {
+
+    // 1. Метод суммы двух чисел
+    public static int sum(int a, int b) {
+        return a + b;
+    }
+
+    // 2. Перегруженный метод суммы трех чисел
+    public static int sum(int a, int b, int c) {
+        return a + b + c;
+    }
+
+    // 3. Метод проверки четности
+    public static boolean isEven(int number) {
+        return number % 2 == 0;
+    }
+
+    // 4. Метод вывода сообщения void
+    public static void printMessage(String message) {
+        System.out.println(message);
+    }
+
+    // 5. Демонстрация работы всех методов в main
+    public static void main(String[] args) {
+        // Демонстрация sum (2 параметра)
+        int result1 = sum(10, 20);
+        printMessage("Сумма 10 и 20 = " + result1);
+
+        // Демонстрация sum (3 параметра)
+        int result2 = sum(5, 15, 25);
+        printMessage("Сумма 5, 15 и 25 = " + result2);
+
+        // Демонстрация isEven
+        int number1 = 8;
+        int number2 = 7;
+        printMessage("Число " + number1 + " четное? " + isEven(number1));
+        printMessage("Число " + number2 + " четное? " + isEven(number2));
+
+        // Демонстрация printMessage
+        printMessage("Все методы успешно выполнены!");
+    }
+}
