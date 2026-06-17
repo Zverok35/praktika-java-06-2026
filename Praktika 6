@@ -1,0 +1,71 @@
+public class Book {
+    // 1. Приватные поля
+    private String title;
+    private String author;
+    private int year;
+
+    // 2. Конструктор для инициализации всех полей
+    public Book(String title, String author, int year) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+    }
+
+    // 3. Геттеры
+    public String getTitle() {
+        return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    // 4. Сеттеры
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    // 5. Метод для вывода информации о книге
+    public void displayInfo() {
+        System.out.println("Название: " + title);
+        System.out.println("Автор: " + author);
+        System.out.println("Год издания: " + year);
+        System.out.println();
+    }
+
+    // 6. Метод main для демонстрации
+    public static void main(String[] args) {
+        // Создание двух объектов Book
+        Book book1 = new Book("Война и мир", "Лев Толстой", 1869);
+        Book book2 = new Book("Преступление и наказание", "Фёдор Достоевский", 1866);
+
+        // Вывод информации о книгах
+        System.out.println("Книга 1:");
+        book1.displayInfo();
+
+        System.out.println("Книга 2:");
+        book2.displayInfo();
+
+        // Демонстрация работы сеттеров и геттеров
+        book1.setTitle("Анна Каренина");
+        book1.setAuthor("Лев Толстой");
+        book1.setYear(1877);
+
+        System.out.println("Обновлённая информация о книге 1:");
+        System.out.println("Название: " + book1.getTitle());
+        System.out.println("Автор: " + book1.getAuthor());
+        System.out.println("Год издания: " + book1.getYear());
+    }
+}
