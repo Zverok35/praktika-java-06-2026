@@ -1,0 +1,46 @@
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Set;
+import java.util.Map;
+
+public class CollectionDemo {
+    public static void main(String[] args) {
+        // 1. Создание списка (ArrayList) с 5 именами (одно повторяется)
+        List<String> studentsList = new ArrayList<>();
+        studentsList.add("Анна");
+        studentsList.add("Иван");
+        studentsList.add("Мария");
+        studentsList.add("Пётр");
+        studentsList.add("Анна"); // Повторяющееся имя
+
+        // 2. Вывод списка на экран
+        System.out.println("Список студентов (с дубликатами):");
+        System.out.println(studentsList);
+        System.out.println("Размер списка: " + studentsList.size());
+        System.out.println();
+
+        // 3. Передача элементов в HashSet для удаления дубликатов
+        Set<String> uniqueStudents = new HashSet<>(studentsList);
+        System.out.println("Множество студентов (без дубликатов):");
+        System.out.println(uniqueStudents);
+        System.out.println("Размер множества: " + uniqueStudents.size());
+        System.out.println();
+
+        // 4. Создание словаря (HashMap) для хранения оценок
+        Map<String, Integer> studentGrades = new HashMap<>();
+
+        // 5. Заполнение словаря оценками
+        studentGrades.put("Анна", 95);
+        studentGrades.put("Иван", 78);
+        studentGrades.put("Мария", 88);
+        studentGrades.put("Пётр", 92);
+
+        // 6. Вывод результатов на экран
+        System.out.println("Оценки студентов:");
+        for (Map.Entry<String, Integer> entry : studentGrades.entrySet()) {
+            System.out.println(entry.getKey() + ": " + entry.getValue() + " баллов");
+        }
+    }
+}
