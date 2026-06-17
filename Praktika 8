@@ -1,0 +1,45 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class ToDoList {
+    public static void main(String[] args) {
+        // 1. Создание ArrayList для хранения задач
+        ArrayList<String> tasks = new ArrayList<>();
+
+        // 2. Добавление 3 задач
+        tasks.add("Купить продукты");
+        tasks.add("Сделать домашнее задание");
+        tasks.add("Позвонить родителям");
+
+        // 3. Вывод всех задач на экран
+        System.out.println("Список задач:");
+        for (String task : tasks) {
+            System.out.println("- " + task);
+        }
+        System.out.println();
+
+        // 4. Удаление второй задачи (индекс 1)
+        tasks.remove(1);
+        System.out.println("После удаления второй задачи:");
+        for (String task : tasks) {
+            System.out.println("- " + task);
+        }
+        System.out.println();
+
+        // 5. Проверка наличия задачи "Ваша задача"
+        String searchTask = "Ваша задача";
+        if (tasks.contains(searchTask)) {
+            System.out.println("Задача \"" + searchTask + "\" найдена в списке.");
+        } else {
+            System.out.println("Задача \"" + searchTask + "\" отсутствует в списке.");
+        }
+        System.out.println();
+
+        // 6. Сортировка списка по алфавиту
+        Collections.sort(tasks);
+        System.out.println("Список задач после сортировки:");
+        for (String task : tasks) {
+            System.out.println("- " + task);
+        }
+    }
+}
