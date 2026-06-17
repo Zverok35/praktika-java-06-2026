@@ -1,0 +1,56 @@
+// 1. Класс NumberTask, выводящий числа от 1 до 5 с задержкой 500 мс
+class NumberTask implements Runnable {
+    @Override
+    public void run() {
+        try {
+            for (int i = 1; i <= 5; i++) {
+                System.out.println("Число: " + i);
+                Thread.sleep(500); // Задержка 500 мс
+            }
+        } catch (InterruptedException e) {
+            System.out.println("Поток NumberTask прерван");
+        }
+    }
+}
+
+// 2. Класс LetterTask, выводящий буквы от 'A' до 'E' с задержкой 700 мс
+class LetterTask implements Runnable {
+    @Override
+    public void run() {
+        try {
+            for (char c = 'A'; c <= 'E'; c++) {
+                System.out.println("Буква: " + c);
+                Thread.sleep(700); // Задержка 700 мс
+            }
+        } catch (InterruptedException e) {
+            System.out.println("Поток LetterTask прерван");
+        }
+    }
+}
+
+// 3. Главный класс для запуска потоков
+public class ThreadDemo {
+    public static void main(String[] args) {
+        // Создание задач
+        NumberTask numberTask = new NumberTask();
+        LetterTask letterTask = new LetterTask();
+
+        // Создание потоков
+        Thread numberThread = new Thread(numberTask);
+        Thread letterThread = new Thread(letterTask);
+
+        // Запуск потоков
+        numberThread.start();
+        letterThread.start();
+
+        // Демонстрация работы join() - ожидание завершения потоков
+        try {
+            numberThread.join();
+            letterThread.join();
+        } catch (InterruptedException e) {
+            System.out.println("Основной поток прерван");
+        }
+
+        System.out.println("Оба потока завершили выполнение.");
+    }
+}
