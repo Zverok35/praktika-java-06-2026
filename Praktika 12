@@ -1,0 +1,32 @@
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+
+public class DateDemo {
+    public static void main(String[] args) {
+        // 1. Получение текущей даты
+        LocalDate today = LocalDate.now();
+
+        // 2. Создание даты рождения (15 марта 1995)
+        LocalDate birthDate = LocalDate.of(1995, 3, 15);
+
+        // 3. Расчёт возраста в годах
+        Period age = Period.between(birthDate, today);
+        int years = age.getYears();
+
+        // 4. Расчёт дней до следующего дня рождения
+        LocalDate nextBirthday = birthDate.withYear(today.getYear());
+        if (nextBirthday.isBefore(today) || nextBirthday.isEqual(today)) {
+            nextBirthday = nextBirthday.plusYears(1);
+        }
+        long daysUntilNextBirthday = Period.between(today, nextBirthday).getDays();
+
+        // 5. Вывод данных в формате dd.MM.yyyy
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+
+        System.out.println("Текущая дата: " + today.format(formatter));
+        System.out.println("Дата рождения: " + birthDate.format(formatter));
+        System.out.println("Возраст: " + years + " лет");
+        System.out.println("Дней до следующего дня рождения: " + daysUntilNextBirthday);
+    }
+}
