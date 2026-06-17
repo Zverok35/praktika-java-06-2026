@@ -1,0 +1,19 @@
+import java.util.*;
+import java.util.stream.Collectors;
+
+public class StreamDemo {
+    public static void main(String[] args) {
+        // 1. Создание списка чисел
+        List<Integer> numbers = Arrays.asList(1, -2, 3, -4, 5);
+
+        // 2. Обработка с помощью Stream API
+        List<Integer> result = numbers.stream()
+                .filter(n -> n > 0)          // A. Отфильтровать положительные
+                .map(n -> n * n)             // B. Возвести в квадрат
+                .collect(Collectors.toList()); // C. Собрать в новый список
+
+        // 3. Вывод исходного и готовых списков
+        System.out.println("Исходный список: " + numbers);
+        System.out.println("Результат (положительные, возведённые в квадрат): " + result);
+    }
+}
