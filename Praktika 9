@@ -1,0 +1,32 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class ExceptionHandlingDemo {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        try {
+            // 1. Запрос двух целых чисел
+            System.out.print("Введите первое число (делимое): ");
+            int num1 = scanner.nextInt();
+
+            System.out.print("Введите второе число (делитель): ");
+            int num2 = scanner.nextInt();
+
+            // 2. Выполнение деления
+            int result = num1 / num2;
+            System.out.println("Результат деления: " + result);
+
+        } catch (InputMismatchException e) {
+            // 3.1 Обработка ввода не числа
+            System.out.println("Ошибка: Введено не целое число!");
+        } catch (ArithmeticException e) {
+            // 3.2 Обработка деления на ноль
+            System.out.println("Ошибка: Деление на ноль невозможно!");
+        } finally {
+            // 4. Блок finally с завершающим сообщением
+            System.out.println("Операция деления завершена.");
+            scanner.close();
+        }
+    }
+}
