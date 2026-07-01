@@ -1,0 +1,154 @@
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class Practice17_Menu {
+    private static HashMap<String, Integer> journal = new HashMap<>();
+    private static Scanner scanner = new Scanner(System.in);
+    
+    public static void main(String[] args) {
+        // Начальное заполнение
+        journal.put("Анна", 95);
+        journal.put("Петр", 78);
+        journal.put("Мария", 88);
+        journal.put("Дмитрий", 62);
+        journal.put("Елена", 91);
+        
+        while (true) {
+            System.out.println("\n=== ЖУРНАЛ УСПЕВАЕМОСТИ ===");
+            System.out.println("1. Показать всех студентов");
+            System.out.println("2. Найти оценку студента");
+            System.out.println("3. Добавить/изменить студента");
+            System.out.println("4. Удалить студента");
+            System.out.println("5. Проверить наличие студента");
+            System.out.println("6. Показать статистику");
+            System.out.println("0. Выход");
+            System.out.print("Выберите действие: ");
+            
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // очистка буфера
+            
+            switch (choice) {
+                case 1:
+                    showAll();
+                    break;
+                case 2:
+                    findStudent();
+                    break;
+                case 3:
+                    addOrUpdateStudent();
+                    break;
+                case 4:
+                    removeStudent();
+                    break;
+                case 5:
+                    checkStudent();
+                    break;
+                case 6:
+                    showStats();
+                    break;
+                case 0:
+                    System.out.println("До свидания!");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Неверный выбор!");
+            }
+        }
+    }
+    
+    public static void showAll() {
+        if (journal.isEmpty()) {
+            System.out.println("Журнал пуст!");
+            return;
+        }
+        System.out.println("\n=== ВСЕ СТУДЕНТЫ ===");
+        for (String name : journal.keySet()) {
+            System.out.println(name + " → " + journal.get(name));
+        }
+    }
+    
+    public static void findStudent() {
+        System.out.print("Введите имя студента: ");
+        String name = scanner.nextLine();
+        
+        if (journal.containsKey(name)) {
+            System.out.println("Оценка " + name + ": " + journal.get(name));
+        } else {
+            System.out.println("Студент \"" + name + "\" не найден!");
+        }
+    }
+    
+    public static void addOrUpdateStudent() {
+        System.out.print("Введите имя студента: ");
+        String name = scanner.nextLine();
+        System.out.print("Введите оценку (1-100): ");
+        int grade = scanner.nextInt();
+        scanner.nextLine();
+        
+        if (journal.containsKey(name)) {
+            System.out.println("Оценка студента " + name + " обновлена: " + grade);
+        } else {
+            System.out.println("Студент " + name + " добавлен с оценкой " + grade);
+        }
+        journal.put(name, grade);
+    }
+    
+    public static void removeStudent() {
+        System.out.print("Введите имя студента для удаления: ");
+        String name = scanner.nextLine();
+        
+        if (journal.containsKey(name)) {
+            int removed = journal.remove(name);
+            System.out.println("Студент \"" + name + "\" (оценка: " + removed + ") удален!");
+        } else {
+            System.out.println("Студент \"" + name + "\" не найден!");
+        }
+    }
+    
+    public static void checkStudent() {
+        System.out.print("Введите имя для проверки: ");
+        String name = scanner.nextLine();
+        
+        if (journal.containsKey(name)) {
+            System.out.println("Студент \"" + name + "\" ЕСТЬ в журнале");
+            System.out.println("Оценка: " + journal.get(name));
+        } else {
+            System.out.println("Студента \"" + name + "\" НЕТ в журнале");
+        }
+    }
+    
+    public static void showStats() {
+        if (journal.isEmpty()) {
+            System.out.println("Журнал пуст!");
+            return;
+        }
+        
+        int sum = 0;
+        int max = Integer.MIN_VALUE;
+        int min = Integer.MAX_VALUE;
+        String maxName = "";
+        String minName = "";
+        
+        for (String name : journal.keySet()) {
+            int grade = journal.get(name);
+            sum += grade;
+            
+            if (grade > max) {
+                max = grade;
+                maxName = name;
+            }
+            if (grade < min) {
+                min = grade;
+                minName = name;
+            }
+        }
+        
+        double average = (double) sum / journal.size();
+        
+        System.out.println("\n=== СТАТИСТИКА ===");
+        System.out.println("Всего студентов: " + journal.size());
+        System.out.println("Средний балл: " + String.format("%.2f", average));
+        System.out.println("Лучший студент: " + maxName + " (" + max + ")");
+        System.out.println("Худший студент: " + minName + " (" + min + ")");
+    }
+}
