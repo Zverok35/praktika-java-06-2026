@@ -1,0 +1,78 @@
+import java.util.Scanner;
+
+public class Practice16 {
+    private static Scanner scanner = new Scanner(System.in);
+    
+    // Задание 1: Матрица с единицами на главной диагонали
+    public static void task1() {
+        System.out.print("Введите размер матрицы: ");
+        int size = scanner.nextInt();
+        
+        int[][] matrix = new int[size][size];
+        
+        // Заполнение главной диагонали единицами
+        for (int i = 0; i < size; i++) {
+            matrix[i][i] = 1;
+        }
+        
+        // Вывод матрицы
+        System.out.println("Матрица " + size + "x" + size + ":");
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+    
+    // Задание 2: Треугольник Паскаля
+    public static void task2() {
+        System.out.print("Введите количество строк треугольника: ");
+        int rows = scanner.nextInt();
+        
+        int[][] pascal = new int[rows][];
+        
+        for (int i = 0; i < rows; i++) {
+            pascal[i] = new int[i + 1];
+            pascal[i][0] = 1;
+            pascal[i][i] = 1;
+            
+            for (int j = 1; j < i; j++) {
+                pascal[i][j] = pascal[i - 1][j - 1] + pascal[i - 1][j];
+            }
+        }
+        
+        System.out.println("Треугольник Паскаля (" + rows + " строк):");
+        for (int i = 0; i < rows; i++) {
+            // Отступы для центрирования
+            for (int k = 0; k < rows - i - 1; k++) {
+                System.out.print("  ");
+            }
+            
+            for (int j = 0; j < pascal[i].length; j++) {
+                System.out.printf("%4d", pascal[i][j]);
+            }
+            System.out.println();
+        }
+    }
+    
+    public static void main(String[] args) {
+        System.out.println("=== ПРАКТИКА №16 ===");
+        System.out.println("1. Матрица (главная диагональ)");
+        System.out.println("2. Треугольник Паскаля");
+        System.out.print("Выберите задание (1 или 2): ");
+        
+        int choice = scanner.nextInt();
+        
+        switch (choice) {
+            case 1:
+                task1();
+                break;
+            case 2:
+                task2();
+                break;
+            default:
+                System.out.println("Неверный выбор!");
+        }
+    }
+}
